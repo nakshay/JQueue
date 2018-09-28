@@ -25,7 +25,7 @@ class RequestHandler implements Runnable {
             socket.shutdownInput(); 
 
             DataOutputStream outputStream = new DataOutputStream(socket.getOutputStream());
-            outputStream.write(new String("Message from server").getBytes());
+            outputStream.write(new String("Message added in queue").getBytes());
             
             outputStream.flush();
             outputStream.close();

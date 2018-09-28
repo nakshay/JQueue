@@ -27,7 +27,7 @@ class Jqueue {
             System.out.println("Queue started on port "+port);
 
             while(true) {
-
+                
                 Socket socket = serverSocket.accept();
                 Thread thread =  new Thread(new RequestHandler(socket));
                 thread.start();
