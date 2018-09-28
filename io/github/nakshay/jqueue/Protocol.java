@@ -1,11 +1,11 @@
 class Protocol {
-    char newQueue = '+';
-    char newMessage = '!';
-    char readMessage = '?';
 
-    String message;
+    private static char newQueue = '+';
+    private static char newMessage = '!';
+    private static char readMessage = '?';
+    private static String message;
 
-    private void parseMessage(byte[] message){
+    protected static void parseMessage(byte[] message){
         this.message = new String(message);
     }
 
