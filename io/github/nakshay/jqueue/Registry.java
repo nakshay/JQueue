@@ -1,27 +1,28 @@
 import java.util.ArrayList;
 class Registry {
 
-   static ArrayList<Queue> registry;
+   static ArrayList<MessageQueue> registry;
 
     static {
 
          registry = new ArrayList();
     }
 
-    static void addQueue(Queue queue) {
+    static void addQueue(MessageQueue queue) {
         registry.add(queue);
     }
 
-    static Queue getQueue(Queue queue) {
-        for (Queue q : registry) {
-            if (q.queueName == queue.queueName) {
+    static MessageQueue getQueue(String queueName) {
+        for (MessageQueue q : registry) {
+            if (q.queueName.equals(queueName)) {
                 return q;
             }
         }
         return null;
     }
 
-    static boolean isQueueExists(Queue queue) {
+
+    static boolean isQueueExists(MessageQueue queue) {
         return registry.contains(queue);
     }
 }

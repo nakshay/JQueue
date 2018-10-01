@@ -24,17 +24,18 @@ class RequestHandler implements Runnable {
 
             socket.shutdownInput(); 
 
+            Protocol proto = new Protocol(buffer);
+            
+            proto.process();
 
             /*
-
             read bytes
             interprit message
             send response back to client here
-            
             */
 
             DataOutputStream outputStream = new DataOutputStream(socket.getOutputStream());
-            outputStream.write(new String("Message added in queue").getBytes());
+            outputStream.write(new String("done").getBytes());
             
             outputStream.flush();
             outputStream.close();

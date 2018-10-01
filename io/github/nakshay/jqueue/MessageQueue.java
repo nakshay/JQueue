@@ -1,17 +1,17 @@
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
-class Queue {
+class MessageQueue {
 
     String queueName;
-    BlockingQueue<byte[]> blkQueue;
+    BlockingQueue<String> blkQueue;
 
-    public Queue(String queueName) {
+    public MessageQueue(String queueName) {
         this.queueName = queueName;
         blkQueue = new LinkedBlockingQueue();
     }
 
-    protected void write(byte[] element) {
+    protected void write(String element) {
         try {
             blkQueue.offer(element);    
         } catch (Exception e) {
@@ -19,13 +19,13 @@ class Queue {
         }
     }
 
-    protected byte[] read() {
+    protected String read() {
         try {
          return blkQueue.poll();   
         } catch (Exception e) {
             System.err.println("error while removing element in queue");
         }       
-        return new byte[]{};
+        return new String("");
     }
 
 }
