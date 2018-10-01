@@ -20,22 +20,14 @@ class RequestHandler implements Runnable {
 
             inputStream.read(buffer);
 
-            System.out.println(socket.getInetAddress().getHostAddress() +" Says "+ new String(buffer).trim());
-
             socket.shutdownInput(); 
 
             Protocol proto = new Protocol(buffer);
             
-            proto.process();
-
-            /*
-            read bytes
-            interprit message
-            send response back to client here
-            */
-
+            String retMessage=  proto.process();
+           
             DataOutputStream outputStream = new DataOutputStream(socket.getOutputStream());
-            outputStream.write(new String("done").getBytes());
+            outputStream.write(new String(retMessage).getBytes());
             
             outputStream.flush();
             outputStream.close();

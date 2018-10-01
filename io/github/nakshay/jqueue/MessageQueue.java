@@ -21,7 +21,7 @@ class MessageQueue {
 
     protected String read() {
         try {
-         return blkQueue.poll();   
+         return blkQueue.poll();
         } catch (Exception e) {
             System.err.println("error while removing element in queue");
         }       
