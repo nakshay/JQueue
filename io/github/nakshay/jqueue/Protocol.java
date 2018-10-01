@@ -3,6 +3,7 @@ class Protocol {
     private final char newQueue = '+';
     private final char newMessage = '!';
     private final char readMessage = '?';
+    private final char listQueues = '&';
     private final String message;
 
     protected Protocol(byte[] message){
@@ -57,6 +58,10 @@ class Protocol {
                         retMessage= "queue does not exist while reading message";
                     }
                 break;
+
+            case listQueues :
+                retMessage =  Registry.getAllQueues();
+                    break;
             default:
             retMessage = "unknown command";
         }

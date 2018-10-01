@@ -8,7 +8,7 @@ class MessageQueue {
 
     public MessageQueue(String queueName) {
         this.queueName = queueName;
-        blkQueue = new LinkedBlockingQueue();
+        blkQueue = new LinkedBlockingQueue<String>();
     }
 
     protected void write(String element) {

@@ -1,15 +1,19 @@
 import java.util.ArrayList;
+import java.util.List;
 class Registry {
 
-   static ArrayList<MessageQueue> registry;
+   static List<MessageQueue> registry;
 
     static {
 
-         registry = new ArrayList();
+         registry = new ArrayList<MessageQueue>();
     }
 
     static void addQueue(MessageQueue queue) {
-        registry.add(queue);
+
+        if(!isQueueExists(queue)){
+            registry.add(queue);
+        }
     }
 
     static MessageQueue getQueue(String queueName) {
@@ -21,8 +25,21 @@ class Registry {
         return null;
     }
 
+    static String getAllQueues() {
+        String queueList = "";
+        for (MessageQueue q : registry) {
+            queueList +=  q.queueName+", ";
+        }
+        return queueList;
+    }
 
     static boolean isQueueExists(MessageQueue queue) {
-        return registry.contains(queue);
+
+        for (MessageQueue q : registry) {
+            if(q.queueName.equals(queue.queueName)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
