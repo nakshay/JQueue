@@ -28,7 +28,7 @@ class Registry {
     static String getAllQueues() {
         String queueList = "";
         for (MessageQueue q : registry) {
-            queueList +=  q.queueName+", ";
+            queueList +=  q.queueName+" | ";
         }
         return queueList;
     }
@@ -41,5 +41,10 @@ class Registry {
             }
         }
         return false;
+    }
+
+    static boolean deleteQueue(String queueName) {
+        MessageQueue queue = getQueue(queueName);
+        return registry.remove(queue);
     }
 }

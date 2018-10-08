@@ -6,7 +6,7 @@ class RequestHandler implements Runnable {
 
     Socket socket;
 
-    protected  RequestHandler(Socket socket) {
+    protected RequestHandler(Socket socket) {
         this.socket = socket;
     }
 
@@ -22,10 +22,12 @@ class RequestHandler implements Runnable {
 
             socket.shutdownInput(); 
 
-            Protocol proto = new Protocol(buffer);
+            Protocol proto = new Protocol(buffer);  
             
-            String retMessage=  proto.process();
+            String retMessage =  proto.process();
            
+            System.out.println("Response sent to client "+ socket.getInetAddress()+" "+retMessage);
+
             DataOutputStream outputStream = new DataOutputStream(socket.getOutputStream());
             outputStream.write(new String(retMessage).getBytes());
             
